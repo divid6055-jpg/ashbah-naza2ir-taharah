@@ -1,0 +1,1112 @@
+/* ============================================================
+   كتاب الأشباه والنظائر في باب الطهارة
+   تصميم أكاديمي احترافي - صفحات A4
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Cairo:wght@300;400;600;700;900&family=Reem+Kufi:wght@400;500;600;700&family=Scheherazade+New:wght@400;500;600;700&display=swap');
+
+/* ===== متغيرات الألوان والأبعاد ===== */
+:root {
+    --primary-color: #1a3a5c;
+    --secondary-color: #c9a961;
+    --accent-color: #8b2c2c;
+    --text-color: #1a1a1a;
+    --text-light: #4a4a4a;
+    --bg-color: #fdfcf8;
+    --border-color: #c9a961;
+    --page-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    
+    /* أبعاد A4 الدقيقة */
+    --page-width: 210mm;
+    --page-height: 297mm;
+    --page-margin-top: 25mm;
+    --page-margin-bottom: 25mm;
+    --page-margin-outer: 20mm;
+    --page-margin-inner: 25mm;
+    --content-height: 247mm; /* 297 - 25 - 25 */
+}
+
+/* ===== إعدادات عامة ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    direction: rtl;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Amiri', 'Scheherazade New', 'Traditional Arabic', serif;
+    background: linear-gradient(135deg, #e8e4d8 0%, #d4cfbf 100%);
+    color: var(--text-color);
+    line-height: 1.9;
+    padding: 20px 0;
+    min-height: 100vh;
+}
+
+/* ===== الصفحة A4 ===== */
+.page {
+    width: var(--page-width);
+    height: var(--page-height);
+    background: var(--bg-color);
+    margin: 15px auto;
+    box-shadow: var(--page-shadow);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    
+    /* الحواف المسطّرة */
+    padding: var(--page-margin-top) var(--page-margin-outer) var(--page-margin-bottom) var(--page-margin-inner);
+    
+    /* إطار الصفحة المزدوج */
+    background-image: 
+        linear-gradient(to right, transparent 0%, transparent 100%);
+}
+
+/* إطار مزخرف للصفحة */
+.page::before {
+    content: '';
+    position: absolute;
+    top: 15mm;
+    right: 12mm;
+    bottom: 15mm;
+    left: 12mm;
+    border: 1.5px solid var(--secondary-color);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.page::after {
+    content: '';
+    position: absolute;
+    top: 17mm;
+    right: 14mm;
+    bottom: 17mm;
+    left: 14mm;
+    border: 0.5px solid var(--secondary-color);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* محتوى الصفحة */
+.page-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    font-size: 14pt;
+    line-height: 1.95;
+}
+
+/* ===== رأس وتذييل الصفحة ===== */
+.page-header {
+    position: absolute;
+    top: 10mm;
+    right: 20mm;
+    left: 20mm;
+    text-align: center;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 9pt;
+    color: var(--primary-color);
+    border-bottom: 0.5px solid var(--secondary-color);
+    padding-bottom: 3mm;
+    z-index: 3;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.page-footer {
+    position: absolute;
+    bottom: 10mm;
+    right: 20mm;
+    left: 20mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 9pt;
+    color: var(--primary-color);
+    border-top: 0.5px solid var(--secondary-color);
+    padding-top: 3mm;
+    z-index: 3;
+}
+
+.page-number {
+    font-weight: 600;
+    background: var(--primary-color);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8pt;
+}
+
+.page-footer-title {
+    font-style: italic;
+    color: var(--text-light);
+}
+
+/* ===== صفحة الغلاف ===== */
+.cover-page {
+    background: linear-gradient(135deg, #1a3a5c 0%, #0d2240 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+.cover-page::before {
+    border: 3px double rgba(201, 169, 97, 0.6);
+    top: 12mm;
+    right: 10mm;
+    bottom: 12mm;
+    left: 10mm;
+}
+
+.cover-page::after {
+    border: 1px solid rgba(201, 169, 97, 0.4);
+    top: 16mm;
+    right: 14mm;
+    bottom: 16mm;
+    left: 14mm;
+}
+
+.cover-content {
+    z-index: 5;
+    position: relative;
+    padding: 30mm;
+}
+
+.cover-bismillah {
+    font-family: 'Amiri', serif;
+    font-size: 22pt;
+    color: var(--secondary-color);
+    margin-bottom: 30mm;
+    font-weight: 700;
+}
+
+.cover-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 32pt;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8mm;
+    line-height: 1.4;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cover-subtitle {
+    font-family: 'Amiri', serif;
+    font-size: 18pt;
+    color: var(--secondary-color);
+    margin-bottom: 25mm;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.cover-ornament {
+    font-size: 24pt;
+    color: var(--secondary-color);
+    margin: 15mm 0;
+    letter-spacing: 10px;
+}
+
+.cover-description {
+    font-family: 'Amiri', serif;
+    font-size: 14pt;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    max-width: 140mm;
+    margin: 0 auto 25mm;
+    padding: 8mm 12mm;
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.cover-volume {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 16pt;
+    color: var(--secondary-color);
+    margin-top: 15mm;
+    padding: 5mm 15mm;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.cover-footer {
+    position: absolute;
+    bottom: 25mm;
+    left: 0;
+    right: 0;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 12pt;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 5;
+}
+
+/* ===== صفحة العناوين الداخلية ===== */
+.title-page {
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.title-page-content {
+    z-index: 5;
+    padding: 30mm 20mm;
+}
+
+.title-page h1 {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 28pt;
+    color: var(--primary-color);
+    margin: 20mm 0 15mm;
+    font-weight: 700;
+}
+
+.title-page .ornament {
+    font-size: 28pt;
+    color: var(--secondary-color);
+    margin: 10mm 0;
+}
+
+.title-page p {
+    font-family: 'Amiri', serif;
+    font-size: 14pt;
+    color: var(--text-light);
+    margin: 5mm 0;
+    line-height: 1.8;
+}
+
+/* ===== العناوين ===== */
+h1.chapter-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 24pt;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 0 0 8mm 0;
+    padding: 6mm 0;
+    border-top: 3px double var(--secondary-color);
+    border-bottom: 3px double var(--secondary-color);
+    font-weight: 700;
+    page-break-after: avoid;
+    break-after: avoid;
+}
+
+h2.section-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 18pt;
+    color: var(--primary-color);
+    margin: 6mm 0 4mm;
+    padding: 3mm 6mm;
+    background: linear-gradient(to left, rgba(201, 169, 97, 0.15), transparent);
+    border-right: 4px solid var(--secondary-color);
+    font-weight: 600;
+    page-break-after: avoid;
+    break-after: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+h3.subsection-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 15pt;
+    color: var(--accent-color);
+    margin: 5mm 0 3mm;
+    padding-right: 5mm;
+    font-weight: 600;
+    position: relative;
+    page-break-after: avoid;
+    break-after: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+h3.subsection-title::before {
+    content: '◆';
+    color: var(--secondary-color);
+    margin-left: 5px;
+    font-size: 12pt;
+}
+
+h4.minor-title {
+    font-family: 'Amiri', serif;
+    font-size: 13pt;
+    color: var(--primary-color);
+    margin: 4mm 0 2mm;
+    font-weight: 700;
+    page-break-after: avoid;
+    break-after: avoid;
+}
+
+/* ===== الفقرات ===== */
+p {
+    margin: 0 0 3mm 0;
+    text-indent: 8mm;
+    text-align: justify;
+    text-justify: inter-word;
+    orphans: 3;
+    widows: 3;
+}
+
+p.no-indent {
+    text-indent: 0;
+}
+
+p.intro {
+    text-indent: 0;
+    font-size: 14pt;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 5mm;
+    padding: 4mm;
+    background: rgba(201, 169, 97, 0.08);
+    border-right: 3px solid var(--secondary-color);
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+/* ===== الاقتباسات والنصوص الخاصة ===== */
+.quote {
+    margin: 4mm 8mm;
+    padding: 4mm 6mm;
+    background: rgba(26, 58, 92, 0.05);
+    border-right: 4px solid var(--primary-color);
+    border-radius: 0 4px 4px 0;
+    font-family: 'Scheherazade New', 'Amiri', serif;
+    font-size: 14pt;
+    color: var(--text-color);
+    line-height: 2;
+    text-align: justify;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.quote::before {
+    content: '«';
+    color: var(--secondary-color);
+    font-size: 18pt;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+.quote::after {
+    content: '»';
+    color: var(--secondary-color);
+    font-size: 18pt;
+    margin-right: 3px;
+    vertical-align: middle;
+}
+
+.matn {
+    background: linear-gradient(to left, rgba(139, 44, 44, 0.05), rgba(139, 44, 44, 0.02));
+    border: 1px solid rgba(139, 44, 44, 0.2);
+    border-right: 4px solid var(--accent-color);
+    padding: 4mm 6mm;
+    margin: 4mm 0;
+    border-radius: 0 4px 4px 0;
+    font-family: 'Scheherazade New', 'Amiri', serif;
+    font-size: 14pt;
+    line-height: 2;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.matn-label {
+    display: inline-block;
+    background: var(--accent-color);
+    color: white;
+    padding: 1mm 4mm;
+    border-radius: 3px;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    margin-bottom: 2mm;
+}
+
+.sharh {
+    background: linear-gradient(to left, rgba(26, 58, 92, 0.05), rgba(26, 58, 92, 0.02));
+    border: 1px solid rgba(26, 58, 92, 0.2);
+    border-right: 4px solid var(--primary-color);
+    padding: 4mm 6mm;
+    margin: 4mm 0;
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.sharh-label {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 1mm 4mm;
+    border-radius: 3px;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    margin-bottom: 2mm;
+}
+
+.note-box {
+    background: linear-gradient(to left, #fff8e1, #fffbf0);
+    border: 1px solid var(--secondary-color);
+    border-right: 4px solid var(--secondary-color);
+    padding: 4mm 6mm;
+    margin: 4mm 0;
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.note-label {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: white;
+    padding: 1mm 4mm;
+    border-radius: 3px;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    margin-bottom: 2mm;
+}
+
+.tanbeeh {
+    background: linear-gradient(to left, #fff0f0, #fff8f8);
+    border: 1px dashed var(--accent-color);
+    padding: 3mm 5mm;
+    margin: 3mm 0;
+    border-radius: 4px;
+    font-style: italic;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.tanbeeh::before {
+    content: '⚠ تنبيه: ';
+    color: var(--accent-color);
+    font-weight: 700;
+    font-style: normal;
+    font-family: 'Reem Kufi', sans-serif;
+}
+
+/* ===== الجداول ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4mm 0;
+    font-family: 'Amiri', serif;
+    font-size: 12pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+table caption {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: var(--primary-color);
+    padding: 3mm;
+    background: rgba(201, 169, 97, 0.1);
+    border: 1px solid var(--secondary-color);
+    border-bottom: none;
+    caption-side: top;
+}
+
+th {
+    background: linear-gradient(135deg, var(--primary-color), #2a4a6c);
+    color: white;
+    padding: 3mm 4mm;
+    text-align: center;
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 600;
+    border: 1px solid var(--primary-color);
+    font-size: 12pt;
+}
+
+td {
+    padding: 3mm 4mm;
+    border: 1px solid #d4cfbf;
+    text-align: right;
+    vertical-align: top;
+    line-height: 1.7;
+}
+
+tr:nth-child(even) td {
+    background: rgba(201, 169, 97, 0.05);
+}
+
+tr:nth-child(odd) td {
+    background: white;
+}
+
+tr:hover td {
+    background: rgba(201, 169, 97, 0.15);
+}
+
+.comparison-table th:first-child {
+    background: linear-gradient(135deg, var(--accent-color), #6b2020);
+}
+
+.comparison-table td:first-child {
+    background: linear-gradient(to left, rgba(139, 44, 44, 0.08), transparent);
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+/* ===== القوائم ===== */
+ul, ol {
+    margin: 3mm 0 3mm 0;
+    padding-right: 10mm;
+}
+
+ul li, ol li {
+    margin: 2mm 0;
+    line-height: 1.9;
+    text-align: justify;
+}
+
+ul li::marker {
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+ol li::marker {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.ornamented-list {
+    list-style: none;
+    padding-right: 0;
+}
+
+.ornamented-list li {
+    padding-right: 8mm;
+    position: relative;
+    margin: 2mm 0;
+}
+
+.ornamented-list li::before {
+    content: '❖';
+    position: absolute;
+    right: 0;
+    color: var(--secondary-color);
+    font-size: 11pt;
+}
+
+/* ===== الحواشي ===== */
+.footnotes {
+    margin-top: auto;
+    padding-top: 3mm;
+    border-top: 1px solid var(--secondary-color);
+    font-size: 10pt;
+    color: var(--text-light);
+    line-height: 1.6;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.footnotes h5 {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 11pt;
+    color: var(--primary-color);
+    margin-bottom: 2mm;
+    font-weight: 600;
+}
+
+.footnote {
+    margin: 1.5mm 0;
+    padding-right: 6mm;
+    position: relative;
+    text-indent: 0;
+}
+
+.footnote-num {
+    color: var(--accent-color);
+    font-weight: 700;
+    margin-left: 2mm;
+}
+
+sup.fn-ref {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 9pt;
+    cursor: pointer;
+}
+
+/* ===== فهرس المحتويات ===== */
+.toc {
+    font-family: 'Amiri', serif;
+}
+
+.toc h1 {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 26pt;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 10mm;
+    padding-bottom: 4mm;
+    border-bottom: 3px double var(--secondary-color);
+}
+
+.toc-entry {
+    display: flex;
+    align-items: baseline;
+    margin: 2mm 0;
+    font-size: 13pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.toc-entry-chapter {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 15pt;
+    margin-top: 5mm;
+    padding-top: 3mm;
+    border-top: 1px solid rgba(201, 169, 97, 0.3);
+}
+
+.toc-entry-section {
+    padding-right: 10mm;
+    color: var(--text-color);
+}
+
+.toc-entry-subsection {
+    padding-right: 18mm;
+    color: var(--text-light);
+    font-size: 12pt;
+}
+
+.toc-title {
+    flex-grow: 0;
+}
+
+.toc-dots {
+    flex-grow: 1;
+    border-bottom: 1px dotted var(--text-light);
+    margin: 0 4mm;
+    transform: translateY(-3px);
+}
+
+.toc-page {
+    flex-grow: 0;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* ===== الزخارف الفاصلة ===== */
+.ornament-divider {
+    text-align: center;
+    margin: 5mm 0;
+    color: var(--secondary-color);
+    font-size: 14pt;
+    letter-spacing: 5px;
+}
+
+.section-divider {
+    text-align: center;
+    margin: 6mm 0;
+    color: var(--secondary-color);
+    font-size: 16pt;
+}
+
+/* ===== الآيات والأحاديث ===== */
+.ayah {
+    font-family: 'Amiri', 'Scheherazade New', serif;
+    font-size: 15pt;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 4mm 0;
+    padding: 3mm;
+    background: linear-gradient(to left, rgba(26, 58, 92, 0.05), rgba(26, 58, 92, 0.02), rgba(26, 58, 92, 0.05));
+    border-radius: 4px;
+    font-weight: 600;
+    line-height: 2;
+}
+
+.ayah::before {
+    content: '﴿ ';
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.ayah::after {
+    content: ' ﴾';
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.hadith {
+    font-family: 'Amiri', serif;
+    font-size: 14pt;
+    color: var(--accent-color);
+    margin: 3mm 4mm;
+    padding: 3mm 5mm;
+    background: rgba(139, 44, 44, 0.04);
+    border-right: 3px solid var(--accent-color);
+    border-radius: 0 4px 4px 0;
+    line-height: 1.95;
+    font-weight: 500;
+}
+
+.hadith::before {
+    content: '« ';
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.hadith::after {
+    content: ' »';
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* ===== الكلمات المميزة ===== */
+.term {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+.foreign-term {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.emphasis {
+    color: var(--accent-color);
+    font-weight: 700;
+    background: rgba(201, 169, 97, 0.15);
+    padding: 0 3px;
+    border-radius: 2px;
+}
+
+/* ===== أزرار التحكم (شريط أدوات) ===== */
+.toolbar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 1000;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.toolbar button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.toolbar button:hover {
+    background: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+.toolbar button.active {
+    background: var(--secondary-color);
+}
+
+/* ===== طباعة PDF ===== */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .toolbar {
+        display: none !important;
+    }
+    
+    .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+    }
+    
+    .page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+    }
+    
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+    
+    /* منع انقطاع المحتوى */
+    h1, h2, h3, h4, h5 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+    
+    .quote, .matn, .sharh, .note-box, table, .ayah, .hadith {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}
+
+/* ===== صفحة الإهداء ===== */
+.dedication-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.dedication-content {
+    z-index: 5;
+    max-width: 140mm;
+    padding: 20mm;
+}
+
+.dedication-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 22pt;
+    color: var(--primary-color);
+    margin-bottom: 15mm;
+    padding-bottom: 4mm;
+    border-bottom: 2px solid var(--secondary-color);
+    display: inline-block;
+}
+
+.dedication-text {
+    font-family: 'Amiri', serif;
+    font-size: 16pt;
+    color: var(--text-color);
+    line-height: 2.2;
+    font-style: italic;
+}
+
+.dedication-text p {
+    text-indent: 0;
+    margin: 4mm 0;
+}
+
+/* ===== صفحة بداية الباب ===== */
+.chapter-opening {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #fdfcf8 0%, #f5f0e0 100%);
+}
+
+.chapter-opening-content {
+    z-index: 5;
+    padding: 30mm 20mm;
+    max-width: 150mm;
+}
+
+.chapter-number {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 14pt;
+    color: var(--secondary-color);
+    letter-spacing: 8px;
+    margin-bottom: 8mm;
+    text-transform: uppercase;
+}
+
+.chapter-main-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 36pt;
+    color: var(--primary-color);
+    margin: 8mm 0;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.chapter-subtitle {
+    font-family: 'Amiri', serif;
+    font-size: 16pt;
+    color: var(--text-light);
+    font-style: italic;
+    margin: 8mm 0 15mm;
+    line-height: 1.8;
+}
+
+.chapter-ornament {
+    font-size: 30pt;
+    color: var(--secondary-color);
+    margin: 10mm 0;
+}
+
+.chapter-quote {
+    font-family: 'Amiri', serif;
+    font-size: 14pt;
+    color: var(--text-color);
+    padding: 5mm 8mm;
+    border-top: 1px solid var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+    line-height: 2;
+    margin: 10mm 0;
+}
+
+/* ===== تعريفات وتنبيهات الكتب الفقهية ===== */
+.definition-box {
+    background: linear-gradient(to left, rgba(26, 58, 92, 0.06), rgba(26, 58, 92, 0.02));
+    border: 1px solid var(--primary-color);
+    border-right: 5px solid var(--primary-color);
+    padding: 4mm 6mm;
+    margin: 4mm 0;
+    border-radius: 0 6px 6px 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.definition-label {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 1mm 5mm;
+    border-radius: 3px 3px 0 0;
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 11pt;
+    font-weight: 600;
+    margin-bottom: 3mm;
+    margin-right: -6mm;
+    margin-top: -4mm;
+}
+
+.shabah-box {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(201, 169, 97, 0.04));
+    border: 2px solid var(--secondary-color);
+    padding: 5mm 7mm;
+    margin: 5mm 0;
+    border-radius: 8px;
+    position: relative;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.shabah-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 3mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px dashed var(--secondary-color);
+    text-align: center;
+}
+
+.naziir-box {
+    background: linear-gradient(135deg, rgba(139, 44, 44, 0.08), rgba(139, 44, 44, 0.02));
+    border: 2px solid var(--accent-color);
+    padding: 5mm 7mm;
+    margin: 5mm 0;
+    border-radius: 8px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.naziir-title {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 3mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px dashed var(--accent-color);
+    text-align: center;
+}
+
+/* ===== تنسيق متجاوب للمعاينة فقط ===== */
+@media screen and (max-width: 250mm) {
+    body {
+        padding: 10px 5px;
+    }
+    
+    .toolbar {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0 auto 20px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 95%;
+    }
+}
+
+/* ===== لون نص خاص بالأرقام ===== */
+.number-emphasis {
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 700;
+    color: var(--accent-color);
+    font-size: 1.1em;
+}
+
+/* ===== جدول مقارنة الأشباه والنظائر ===== */
+.shabah-naziir-table {
+    border: 2px solid var(--primary-color);
+}
+
+.shabah-naziir-table thead th {
+    background: linear-gradient(135deg, var(--accent-color), #6b2020);
+    font-size: 13pt;
+    padding: 4mm;
+}
+
+.shabah-naziir-table td {
+    padding: 3.5mm 4mm;
+    line-height: 1.75;
+    font-size: 12pt;
+}
+
+.shabah-naziir-table tbody tr:first-child td {
+    border-top: 2px solid var(--primary-color);
+}
+
+/* ===== ضمان عدم الفصل ===== */
+.keep-together {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.page-break-before {
+    page-break-before: always;
+    break-before: page;
+}
+
+.no-break-after {
+    page-break-after: avoid;
+    break-after: avoid;
+}
